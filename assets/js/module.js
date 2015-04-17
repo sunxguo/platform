@@ -82,7 +82,24 @@ function upload_previewimg(appid){
 	});
 	return false;
 }
-
+function save_module_link(linkId){
+	$.post(
+	"/cms/index/modify_info",
+	{
+		'info_type':"link",
+		'linkId':linkId,
+		'url':$("#url").val()
+	},
+	function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			alert("保存成功！");
+			location.reload();
+		}else{
+			alert(result.message);
+		}
+	});
+}
 function save_module_essay(draft,essayid){
 	if($("#title").val()==""){
 		alert("请输入文章标题！");

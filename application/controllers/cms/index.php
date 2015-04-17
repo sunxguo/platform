@@ -1348,6 +1348,15 @@ class Index extends CI_Controller {
 				$content=$_POST['contentid'];
 				$log="修改文章【".$_POST['contentid']."】";
 			break;
+			case "link":
+				$table="link";
+				$info=array(
+					"url_link"=>$_POST['url']
+				);
+				$where="id_link";
+				$content=$_POST['linkId'];
+				$log="修改Link【".$_POST['linkId']."】";
+			break;
 			case "essay_del":
 				$table="essay";
 				$info=array(
