@@ -171,9 +171,10 @@ function getinfo(navid,name){
 					}
 				break;
 				case "6":
-					$("#main_body").html(result.message.link);
+					window.open(result.message.link);
+					//$("#main_body").html(result.message.link);
 					//alert(result.message.link);
-					$("#main_body").addClass("con-pd");
+					//$("#main_body").addClass("con-pd");
 				break;
 			}
 		}else{
