@@ -86,7 +86,8 @@ class Home extends CI_Controller {
 					break;
 					case 6:
 						$links=$this->dbHandler->SDUNR('link',array("navid_link"=>$navid),array("col"=>'id_link',"by"=>'asc'));
-						$nav->link=file_get_contents($links[0]->url_link);
+//						$nav->link=file_get_contents($links[0]->url_link);
+						$nav->link=$links[0]->url_link;
 					break;
 					case 5:
 						if($nav->hasmallcat_nav==1){//有分类
