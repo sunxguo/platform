@@ -171,8 +171,11 @@ function getinfo(navid,name){
 					}
 				break;
 				case "6":
-					window.open(result.message.link);
-					//$("#main_body").html(result.message.link);
+					//window.open(result.message.link);
+					$("#main_body").html('<a id="link" href="'+result.message.link+'" target="_blank" onload="">Facebook</a>'+
+						'<script>document.getElementById("link").click();</script>'
+					);
+				//	$("#link").click();
 					//alert(result.message.link);
 					//$("#main_body").addClass("con-pd");
 				break;
