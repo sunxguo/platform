@@ -1,6 +1,6 @@
 <div class="slider">
 <?php foreach($navs as $item):
-	if($item->id_nav=='46' &&  $_SESSION['username']!='root' || $item->id_nav=='40' &&  $_SESSION['username']!='merchant'){
+	if($item->id_nav=='58' &&  $_SESSION['username']!='root' || $item->id_nav=='52' &&  $_SESSION['username']!='merchant'){
 		
 	}
 	else{

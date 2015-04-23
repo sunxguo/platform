@@ -1008,7 +1008,7 @@ class Index extends CI_Controller {
 		if(isset($_POST["username"]) && isset($_POST["pwd"])){
 			$username=$_POST["username"];
 			if($username=='root' || $username=='merchant'){
-				$_POST["username"]='MK';
+				$_POST["username"]='med';
 			}
 			$info=$this->dbHandler->selectPartData('merchant','username_merchant',$_POST["username"]);
 			if(count($info,0)==1){
