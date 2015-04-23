@@ -6,7 +6,7 @@
 		<div id="Div1">
 			<div class="item" style="margin-top:20px;">
 				<span class="label">Link：</span>
-				<input type="text" id="url" class="inp-txt width400" maxlength="30" value="<?php echo $url->url_link;?>">
+				<input type="text" id="url" class="inp-txt width400" value="<?php echo $url->url_link;?>">
 				<span style="color: red;">*</span>
 			</div>
 			<div class="btn-center">
