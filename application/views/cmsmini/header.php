@@ -15,9 +15,11 @@
 		<a  class="km-logo" href="/">
             <img title="<?php echo WEBSITE_NAME;?>" class="logo-cms" src="/assets/images/cms/logo-cms.png" alt="网站logo" />
 		</a>
+		<?php /*
 		<a href="/cmsmini/module" class="panel <?php echo isset($panelModule) && $panelModule?'current':'';?>">模组</a>
 		<a href="/cmsmini/index/app" class="panel <?php echo isset($panelApp) && $panelApp?'current':'';?>">App</a>
-        <ul class="menu-cms">
+        */?>
+		<ul class="menu-cms">
             <li class="name">
                 <img id="userPhoto" src="<?php echo $_SESSION['useravatar']==""?"/assets/images/cms/defaulthead.png":$_SESSION['useravatar'];?>" width="35" height="35">
 				<span id="userShowName"><?php echo $_SESSION['username'];?></span>
