@@ -68,11 +68,13 @@
 			<div class="tit-div" id="tit_div">
 				<span class="title mobiletitle<?php echo $app->template_app;?>" id="tit_con"><?php echo $app->name_app;?></span>
 			</div>
+			<!--
 			<div id="malMore_bt" class="malMore-bt-div" onclick="showMallMore()">
 				<a href="javascript:void()">
 					<img id="mmbt" src="/assets/images/cms/mallmore.png"/>
 				</a>
 			</div>
+			-->
 		</div>
 		<div class="mall-more clearfix" id="mall_more">
 			<a href="javascript:usercenter()" class="new-tbl-cell">
@@ -149,7 +151,7 @@
 	</div>
 	<?php if($app->template_app==2 && $bt_num>4):?>
 	<ul class="morelist" id="morelist">
-		<?php for($i=3;$i<$bt_num;$i++):?>
+		<?php for($i=0;$i<$bt_num;$i++):?>
 		<li>
 			<a href="javascript:getinfo('<?php echo $navs[$i]->id_nav;?>','<?php echo $navs[$i]->name_nav;?>');">
 				<img src="<?php echo $navs[$i]->icon_nav;?>">
