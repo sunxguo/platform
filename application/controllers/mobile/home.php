@@ -16,14 +16,18 @@ class Home extends CI_Controller {
 			return false;
 		}
 		$app=$this->dbHandler->selectPartData('app','id_app',$_GET['appid']);
+		$ymxz=$this->dbHandler->selectPartData('nav','id_nav','111');
+		$zdqb=$this->dbHandler->selectPartData('nav','id_nav','112');
 		$navs=$this->dbHandler->SDUNR('nav',array("app_id_nav"=>$_GET['appid']),array("col"=>'order_nav',"by"=>'asc'));
 		$sliders=$this->dbHandler->SDUNR('homeslider',array("appid_homeslider"=>$_GET['appid']),array("col"=>'ordernum_homeslider',"by"=>'asc'));
 		$this->load->view('mobile/home',
 			array(
 				'showSlider' => true,
-				'title' => $app[0]->name_app."-手机网站",
+				'title' => ($app[0]->name_app)."-手机网站",
 				'app'=>$app[0],
 				'navs'=>$navs,
+				'ymxz'=>$ymxz[0],
+				'zdqb'=>$zdqb[0],
 				'sliders'=>$sliders
 			)
 		);
@@ -180,7 +184,12 @@ class Home extends CI_Controller {
 	public function add_formdata(){
 		$userid=isset($_SESSION["appuserid"])?$_SESSION["appuserid"]:0;
 		$time=date("Y-m-d H:i:s");
+		$message='提交時間：'.$time.'<br>';
+//		$message.='用戶ID：'.$userid.'<br>';
 		foreach($_POST['data'] as $value){
+			$form=$this->dbHandler->selectPartData('form','id_form',$value["formid"]);
+			$itemName=$form[0]->name_form;
+			$message.=$itemName.':'.$value["data"].'<br>';
 			$info=array(
 				"formid_formdata"=>$value["formid"],
 				"data_formdata"=>$value["data"],
@@ -189,6 +198,9 @@ class Home extends CI_Controller {
 			);
 			$result=$this->dbHandler->insertdata("formdata",$info);
 		}
+		$app=$this->dbHandler->selectPartData('app','id_app',$_GET['appid']);
+		$merchant=$this->dbHandler->selectPartData('merchant','id_merchant',$_SESSION['userid']);
+		$this->email($merchant[0]->email_merchant,'由用戶提交信息',$message);
 		echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
 	}
 	public function check_push_msg(){

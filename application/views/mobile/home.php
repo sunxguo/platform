@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
-    <title><?=$title?></title>
+    <title><?php echo $title;?></title>
 	<link rel="stylesheet" href="/assets/css/base.css" type="text/css"/>
 	<link rel="stylesheet" href="/assets/css/mobile.css" type="text/css"/>
     <script src="/assets/js/jquery.js" type="text/javascript"></script>
@@ -159,6 +159,18 @@
 			</a>
 		</li>
 		<?php endfor;?>
+		<li>
+			<a href="javascript:getinfo('<?php echo $ymxz->id_nav;?>','<?php echo $ymxz->name_nav;?>');">
+				<img src="<?php echo $ymxz->icon_nav;?>">
+				<span><?php echo $ymxz->name_nav;?></span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:getinfo('<?php echo $zdqb->id_nav;?>','<?php echo $zdqb->name_nav;?>');">
+				<img src="<?php echo $zdqb->icon_nav;?>">
+				<span><?php echo $zdqb->name_nav;?></span>
+			</a>
+		</li>
 	</ul>
 	<?php endif;?>
 </div>
