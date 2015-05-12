@@ -150,7 +150,7 @@
 		<?php endif;?>
 	</div>
 	<?php if($app->template_app==2 && $bt_num>4):?>
-	<ul class="morelist" id="morelist">
+	<ul class="morelist" id="morelist" style="position:fixed;right: 0px;top: 0px;">
 		<?php for($i=0;$i<$bt_num;$i++):?>
 		<li>
 			<a href="javascript:getinfo('<?php echo $navs[$i]->id_nav;?>','<?php echo $navs[$i]->name_nav;?>');">
