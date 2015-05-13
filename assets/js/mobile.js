@@ -192,6 +192,8 @@ function getinfo(navid,name){
 			showmore();
 		}
 	}
+	$("#goBackHome_bt").show();
+	
 }
 function sub_nav_click(subnavid){
 	$("#show_sider_bt").hide();
@@ -243,6 +245,7 @@ function goBackUCOrders(){
 function essay_click(essayid){
 	$("#show_sider_bt").hide();
 	$("#goBackSub_bt").show();
+	$("#goBackHome_bt").hide();
 	goBack=true;
 	var waitDiv="<img src='/assets/images/cms/loading.gif'>";
 	$("#main_body").html(waitDiv);

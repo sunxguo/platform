@@ -45,6 +45,7 @@
 				</a>
 			</div>
 			<?php endif;?>
+			<!--
 			<div id="goBackSub_bt" class="bt-div" onclick="goBackSub()" style="display:none;">
 				<a href="javascript:void()">
 					<img src="/assets/images/cms/scroll_left.png"/>
@@ -65,6 +66,7 @@
 					<img src="/assets/images/cms/scroll_left.png"/>
 				</a>
 			</div>
+			-->
 			<div class="tit-div" id="tit_div">
 				<span class="title mobiletitle<?php echo $app->template_app;?>" id="tit_con"><?php echo $app->name_app;?></span>
 			</div>
@@ -94,7 +96,7 @@
 			<div class="slider" id="slider">
 				<ul>
 					<?php foreach($sliders as $img):?>
-					<li><a href=""><img class="slider_img" src="<?php echo $img->src_homeslider;?>"/></a></li>
+					<li><a href="javascript:void();"><img class="slider_img" src="<?php echo $img->src_homeslider;?>"/></a></li>
 					<?php endforeach;?>
 				</ul>
 			</div>
@@ -128,8 +130,32 @@
 			<?php endif;?>
 		</ul>
 		<ul class="backbar" id="back_bar">
-			<li>
+			<li id="goBackHome_bt" style="display:none;">
 				<a href="javascript:bargoback();">
+					<img src="/assets/images/mobile/btn_footer_back.png">
+					<span>返回</span>
+				</a>
+			</li>
+			<li id="goBackSub_bt" style="display:none;">
+				<a href="javascript:goBackSub();">
+					<img src="/assets/images/mobile/btn_footer_back.png">
+					<span>返回</span>
+				</a>
+			</li>
+			<li id="goBackCat_bt" style="display:none;">
+				<a href="javascript:goBackCat();">
+					<img src="/assets/images/mobile/btn_footer_back.png">
+					<span>返回</span>
+				</a>
+			</li>
+			<li id="goBackUC_bt" style="display:none;">
+				<a href="javascript:goBackUC();">
+					<img src="/assets/images/mobile/btn_footer_back.png">
+					<span>返回</span>
+				</a>
+			</li>
+			<li id="goBackUCOrders_bt" style="display:none;">
+				<a href="javascript:goBackUCOrders();">
 					<img src="/assets/images/mobile/btn_footer_back.png">
 					<span>返回</span>
 				</a>
