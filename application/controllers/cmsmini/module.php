@@ -256,6 +256,33 @@ class Module extends CI_Controller {
 		$this->load->view('cmsmini/module/addEssay', $data);
 		$this->load->view('cmsmini/footer');
 	}
+	public function homeSlider(){
+		$this->checkMerchantLogin();
+		//$total=$this->dbHandler->amount_data_no_condition($table);
+		$byMerchantId=(isset($_SESSION['Fuserid']) && $_SESSION['Fuserid']!="")?$_SESSION['Fuserid']:$_SESSION['userid'];
+		$apps=$this->dbHandler->SDUNR('app',array("merchant_id_app"=>$byMerchantId),array("col"=>'update_time_app',"by"=>'desc'));
+		$app=$apps[0];
+		$navs=$this->dbHandler->SDUNR('nav',array("app_id_nav"=>$app->id_app),array("col"=>'order_nav',"by"=>'asc'));
+/*		if($byMerchantId!=$app->merchant_id_app || !$this->get_authority("pAddContent")){
+			$this->load->view('redirect',array("url"=>"/cms/index/app","info"=>"抱歉你没有设置该app的权限！"));
+			return false;
+		}
+		*/
+		$currentNav=new stdClass();
+		$currentNav->id_nav=0;
+		$app->homeslider=$this->dbHandler->SDUNR('homeslider',array("appid_homeslider"=>$app->id_app),array("col"=>'ordernum_homeslider',"by"=>'asc'));
+		$this->load->view('cmsmini/header',
+			array(
+				'showSlider' => true,
+				'panelModule' => true,
+				'navs'=>$navs,
+				'nav'=>$currentNav,
+				'title' => lang('cms_website_name')."-".lang('cms_sider_home')
+			)
+		);
+		$this->load->view('cmsmini/module/home', array("info"=>$app));
+		$this->load->view('cmsmini/footer');
+	}
 	public function essay(){
 		$this->checkMerchantLogin();
 		$essay=$this->dbHandler->selectPartData('essay','id_essay',$_GET['essayid']);
