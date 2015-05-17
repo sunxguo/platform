@@ -37,6 +37,7 @@
 	</div>
 	<?php endif;?>
 	<div class="main" id="main">
+	<!--
 		<div class="header skin<?php echo $app->skin_app;?>" id="header" bkcolor="<?php echo $app->skin_app=="5"?$app->skincolor_app:'';?>" bkimg="<?php echo $app->skin_app=="6"?$app->skinbgimg_app:'';?>">
 			<?php if($app->template_app==1):?>
 			<div id="show_sider_bt" class="bt-div" onclick="show_sider()">
@@ -66,7 +67,6 @@
 					<img src="/assets/images/cms/scroll_left.png"/>
 				</a>
 			</div>
-			-->
 			<div class="tit-div" id="tit_div">
 				<span class="title mobiletitle<?php echo $app->template_app;?>" id="tit_con"><?php echo $app->name_app;?></span>
 			</div>
@@ -76,8 +76,8 @@
 					<img id="mmbt" src="/assets/images/cms/mallmore.png"/>
 				</a>
 			</div>
-			-->
 		</div>
+	-->
 		<div class="mall-more clearfix" id="mall_more">
 			<a href="javascript:usercenter()" class="new-tbl-cell">
 				<span class="icon icon4">个人中心</span>
@@ -96,7 +96,7 @@
 			<div class="slider" id="slider">
 				<ul>
 					<?php foreach($sliders as $img):?>
-					<li><a href="javascript:void();"><img class="slider_img" src="<?php echo $img->src_homeslider;?>"/></a></li>
+					<li><a href="javascript:if($('#morelist').is(':visible')) showmore();"><img class="slider_img" src="<?php echo $img->src_homeslider;?>"/></a></li>
 					<?php endforeach;?>
 				</ul>
 			</div>
