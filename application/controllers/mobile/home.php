@@ -18,6 +18,8 @@ class Home extends CI_Controller {
 		$app=$this->dbHandler->selectPartData('app','id_app',$_GET['appid']);
 		$ymxz=$this->dbHandler->selectPartData('nav','id_nav','111');
 		$zdqb=$this->dbHandler->selectPartData('nav','id_nav','112');
+		$link=$this->dbHandler->selectPartData('link','navid_link',$zdqb[0]->id_nav);
+		$zdqb[0]->link=$link[0]->url_link;
 		$navs=$this->dbHandler->SDUNR('nav',array("app_id_nav"=>$_GET['appid']),array("col"=>'order_nav',"by"=>'asc'));
 		foreach($navs as $n){
 			if($n->type_nav==6){

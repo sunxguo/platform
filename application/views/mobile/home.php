@@ -196,7 +196,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="javascript:getinfo('<?php echo $zdqb->id_nav;?>','<?php echo $zdqb->name_nav;?>');">
+			<a href="<?php echo $zdqb->link;?>" target="_blank">
 				<img src="<?php echo $zdqb->icon_nav;?>">
 				<span><?php echo $zdqb->name_nav;?></span>
 			</a>
