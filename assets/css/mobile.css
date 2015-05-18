@@ -74,6 +74,7 @@ body{
     border-radius:2px;            /* W3C syntax */
 }
 .main{
+	position:relative;
 	width:100%;
 	height:100%;
 	float: left;
@@ -243,26 +244,31 @@ body{
 .essaylist li:hover{
 	background-color:#F6F6F6;
 }
+.formlist{
+	padding:10px;
+}
 .formlist li{
 	width: 100%;
 	height: 85px;
-	line-height: 85px;
+/*	text-align: center;
+	line-height: 85px;*/
 	font-size: 18px;
 /*	border-bottom: 1px dotted #DDD;*/
 }
 .formlist li .label{
-	width:20%;
+	float: left;
 	display:inline-block;
 	vertical-align:top;
-	text-align:right;
 }
 .formlist li input{
-	width:70%;
+	width:90%;
 	height:25px;
+	margin-top: 5px;
 }
 .formlist li textarea{
-	width:70%;
+	width:90%;
 	height:80px;
+	margin-top: 5px;
 }
 .formlist li .btnfa120 {
 	display: block;
@@ -1141,4 +1147,14 @@ display: block;
 	width:120px;
 	margin:10px auto;
 	display: block;
+}
+.hide-layer{
+	display:none;
+	position:absolute;
+	background-color:#000;
+	opacity:0;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	z-index: 10000;
 }

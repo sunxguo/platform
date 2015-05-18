@@ -96,7 +96,7 @@
 			<div class="slider" id="slider">
 				<ul>
 					<?php foreach($sliders as $img):?>
-					<li><a href="javascript:if($('#morelist').is(':visible')) showmore();"><img class="slider_img" src="<?php echo $img->src_homeslider;?>"/></a></li>
+					<li><a href="javascript:void();"><img class="slider_img" src="<?php echo $img->src_homeslider;?>"/></a></li>
 					<?php endforeach;?>
 				</ul>
 			</div>
@@ -174,6 +174,8 @@
 			</li>
 		</ul>
 		<?php endif;?>
+		<div class="hide-layer" id="hideLayer">
+		</div>
 	</div>
 	<?php if($app->template_app==2 && $bt_num>4):?>
 	<ul class="morelist" id="morelist" style="position:fixed;right: 0px;top: 0px;">

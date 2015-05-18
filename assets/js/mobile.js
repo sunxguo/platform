@@ -23,6 +23,9 @@ $(document).ready(function(){
 		"overflow-y":"hidden"
 	});
 	$('#slider').unslider();
+	$("#hideLayer").click(function(){
+		showmore();
+	});
 });
 var showMore=false;
 var showBar=true;
@@ -35,6 +38,7 @@ function showmore(){
 		$("#back_bar").animate({"left":data},300);
 		$("#malMore_bt").animate({"right":"10px"},300);
 		$("#morelist").hide();
+		$("#hideLayer").hide();
 	}
 	else{
 		data="-180px";
@@ -42,6 +46,7 @@ function showmore(){
 		$("#bar").animate({"left":data},300);
 		$("#back_bar").animate({"left":data},300);
 		$("#malMore_bt").animate({"right":"190px"},300);
+		$("#hideLayer").show();
 		$("#morelist").show();
 	}
 //	$("#main").css("margin-left",data);
@@ -131,8 +136,8 @@ function getinfo(navid,name){
 					inputAmount=forms.length;
 					for(var i=0;i<forms.length;i++){
 						var formLi="";
-						if(forms[i].type_form=="short") formLi='<li><span class="label">'+forms[i].name_form+'：</span><input class="inp-txt" type="text" id="input'+i+'"><input type="hidden" id="formid'+i+'" value="'+forms[i].id_form+'"></li>';
-						else formLi='<li><span class="label">'+forms[i].name_form+'：</span><textarea id="input'+i+'"></textarea><input type="hidden" id="formid'+i+'" value="'+forms[i].id_form+'"></li>';
+						if(forms[i].type_form=="short") formLi='<li><span class="label">'+forms[i].name_form+'：</span><br><input class="inp-txt" type="text" id="input'+i+'"><input type="hidden" id="formid'+i+'" value="'+forms[i].id_form+'"></li>';
+						else formLi='<li><span class="label">'+forms[i].name_form+'：</span><br><textarea id="input'+i+'"></textarea><input type="hidden" id="formid'+i+'" value="'+forms[i].id_form+'"></li>';
 						$("#main_body .formlist").append(formLi);
 					}
 					$("#main_body .formlist").append('<li><a style="cursor: pointer;" onclick="submitInfo()" class="btnfa120">提交</a></li>');
