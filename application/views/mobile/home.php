@@ -181,7 +181,7 @@
 		<li>
 			<?php if($navs[$i]->type_nav==6):?>
 			<a href="<?php echo $navs[$i]->link;?>" target="_blank">
-			<?php endif;?>
+			<?php else:?>
 			<a href="javascript:getinfo('<?php echo $navs[$i]->id_nav;?>','<?php echo $navs[$i]->name_nav;?>');">
 			<?php endif;?>
 				<img src="<?php echo $navs[$i]->icon_nav;?>">
