@@ -179,7 +179,11 @@
 	<ul class="morelist" id="morelist" style="position:fixed;right: 0px;top: 0px;">
 		<?php for($i=0;$i<$bt_num;$i++):?>
 		<li>
+			<?php if($navs[$i]->type_nav==6):?>
+			<a href="<?php echo $navs[$i]->link;?>" target="_blank">
+			<?php endif;?>
 			<a href="javascript:getinfo('<?php echo $navs[$i]->id_nav;?>','<?php echo $navs[$i]->name_nav;?>');">
+			<?php endif;?>
 				<img src="<?php echo $navs[$i]->icon_nav;?>">
 				<span><?php echo $navs[$i]->name_nav;?></span>
 			</a>

@@ -19,6 +19,12 @@ class Home extends CI_Controller {
 		$ymxz=$this->dbHandler->selectPartData('nav','id_nav','111');
 		$zdqb=$this->dbHandler->selectPartData('nav','id_nav','112');
 		$navs=$this->dbHandler->SDUNR('nav',array("app_id_nav"=>$_GET['appid']),array("col"=>'order_nav',"by"=>'asc'));
+		foreach($navs as $n){
+			if($n->type_nav==6){
+				$link=$this->dbHandler->selectPartData('link','navid_link',$n->id_nav);
+				$n->link=$link[0]->url_link;
+			}
+		}
 		$sliders=$this->dbHandler->SDUNR('homeslider',array("appid_homeslider"=>$_GET['appid']),array("col"=>'ordernum_homeslider',"by"=>'asc'));
 		$this->load->view('mobile/home',
 			array(
