@@ -31,7 +31,7 @@ class Home extends CI_Controller {
 		$this->load->view('mobile/home',
 			array(
 				'showSlider' => true,
-				'title' => ($app[0]->name_app)."-手机网站",
+				'title' => ($app[0]->name_app)."-手機網站",
 				'app'=>$app[0],
 				'navs'=>$navs,
 				'ymxz'=>$ymxz[0],
@@ -66,7 +66,7 @@ class Home extends CI_Controller {
 		}
 		$this->load->view('mobile/mall',
 			array(
-				'title' => WEBSITE_NAME."-购物-手机网站",
+				'title' => WEBSITE_NAME."-購物-手機網站",
 				'nav'=>$nav[0],
 				'products'=>$products
 			)
@@ -209,7 +209,7 @@ class Home extends CI_Controller {
 		$app=$this->dbHandler->selectPartData('app','id_app',$_GET['appid']);
 		$merchant=$this->dbHandler->selectPartData('merchant','id_merchant',$_SESSION['userid']);
 		$this->email($merchant[0]->email_merchant,'由用戶提交信息',$message);
-		echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
+		echo json_encode(array("result"=>"success","message"=>"信息寫入成功"));
 	}
 	public function check_push_msg(){
 		$wherein[0]=array("orfield"=>"appid_message","ordata"=>array($_GET["appid"],0));
@@ -316,9 +316,9 @@ class Home extends CI_Controller {
 		}
 		if($result==1){
 			unset($_SESSION["cart"]);
-			echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
+			echo json_encode(array("result"=>"success","message"=>"信息寫入成功"));
 		}
-		else echo json_encode(array("result"=>"failed","message"=>"信息写入失败"));
+		else echo json_encode(array("result"=>"failed","message"=>"信息寫入失敗"));
 	}
 	public function pay(){
 		$this->load->helper("pingpp");

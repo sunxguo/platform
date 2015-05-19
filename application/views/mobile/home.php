@@ -163,7 +163,7 @@
 			<li>
 				<a href="javascript:location.reload();">
 					<img src="/assets/images/mobile/btn_footer_home.png">
-					<span>主页</span>
+					<span>主頁</span>
 				</a>
 			</li>
 			<li>
