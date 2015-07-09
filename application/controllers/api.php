@@ -90,7 +90,8 @@ class Api extends CI_Controller {
 			$essay->title=$e->title_essay;
 			$essay->summary=$e->summary_essay;
 //			$essay->text=$e->text_essay;
-			$essay->thumbnail=json_decode($e->thumbnail_essay);
+			$thumbnails=json_decode($e->thumbnail_essay);
+			$essay->thumbnail=isset($thumbnails[0])?'http://clinic.coolkeji.com'.$thumbnails[0]->src:'';
 			$data[]=$essay;
 		}
 		$echoData->result=0;
