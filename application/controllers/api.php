@@ -41,9 +41,12 @@ class Api extends CI_Controller {
 		);
 	}
 	public function nav(){
+		$echoData=new stdClass;
 		if(!isset($_GET['appid']) || !is_numeric($_GET['appid'])){
 			//1->Appid Error!
-			echo json_encode(array("result"=>1,"data"=>$msg));
+			$echoData->result=1;
+			$echoData->data='app id 错误！';
+			echo json_encode($echoData);
 			return false;
 		}
 		$ymxz=$this->dbHandler->selectPartData('nav','id_nav','111');
@@ -53,22 +56,68 @@ class Api extends CI_Controller {
 		$navs[sizeof($navs)+1]=$zdqb[0];
 		$data=array();
 		foreach($navs as $n){
+			$nav=new stdClass;
+			$nav->id=$n->id_nav;
+			$nav->name=$n->name_nav;
+			$nav->icon='http://clinic.coolkeji.com'.$n->icon_nav;
+			$nav->type=$n->type_nav;
 			if($n->type_nav==6){
 				$link=$this->dbHandler->selectPartData('link','navid_link',$n->id_nav);
-				$n->url=$link[0]->url_link;
+				$nav->url=$link[0]->url_link;
 			}
-			$nav=new stdClass;
-			$nav->name=$n->name_nav;
-			$nav->icon=$n->icon_nav;
-			$nav->type=$n->type_nav;
 			$data[]=$nav;
 		}
 //		print_r($data);
-		$echoData=new stdClass;
 		$echoData->result=0;
 		$echoData->data=$data;
 		echo json_encode($echoData);
 //		echo json_encode(array("result"=>0,"data"=>$data));
+	}
+	public function essaylist(){
+		$echoData=new stdClass;
+		if(!isset($_GET['navid']) || !is_numeric($_GET['navid'])){
+			//1->Appid Error!
+			$echoData->result=1;
+			$echoData->data='nav id 错误！';
+			echo json_encode($echoData);
+			return false;
+		}
+		$essays=$this->dbHandler->SDUNR('essay',array("navid_essay"=>$_GET['navid']),array("col"=>'lasttime_essay',"by"=>'desc'));
+		$data=array();
+		foreach($essays as $e){
+			$essay=new stdClass;
+			$essay->id=$e->id_essay;
+			$essay->title=$e->title_essay;
+			$essay->summary=$e->summary_essay;
+//			$essay->text=$e->text_essay;
+			$essay->thumbnail=$e->thumbnail_essay;
+			$data[]=$essay;
+		}
+		$echoData->result=0;
+		$echoData->data=$data;
+		echo json_encode($echoData);
+	}
+	public function essay(){
+		$echoData=new stdClass;
+		if(!isset($_GET['essayid']) || !is_numeric($_GET['essayid'])){
+			//1->Appid Error!
+			$echoData->result=1;
+			$echoData->data='nav id 错误！';
+			echo json_encode($echoData);
+			return false;
+		}
+		$essay=$this->dbHandler->selectPartData('essay','id_essay',$_GET['essayid']);
+		$essay=$essay[0];
+		$data=new stdClass;
+		$data->id=$essay->id_essay;
+		$data->navid=$essay->navid_essay;
+		$data->title=$essay->title_essay;
+		$data->summary=$essay->summary_essay;
+		$data->text=$essay->text_essay;
+		$data->thumbnail=$essay->thumbnail_essay;
+		$echoData->result=0;
+		$echoData->data=$data;
+		echo json_encode($echoData);
 	}
 	public function get_info(){
 		$msg="";
