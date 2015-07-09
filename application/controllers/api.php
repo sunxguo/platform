@@ -1,0 +1,207 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+@session_start();
+
+class Api extends CI_Controller {
+
+	function __construct(){
+		parent::__construct();
+		$this->load->helper("base");
+		$this->load->helper("upload");
+		$this->load->model("dbHandler");
+	}
+	public function index()
+	{
+		if(!isset($_GET['appid']) || !is_numeric($_GET['appid'])){
+			$this->load->view('redirect',array("info"=>"app的id不正确"));
+			return false;
+		}
+		$app=$this->dbHandler->selectPartData('app','id_app',$_GET['appid']);
+		$ymxz=$this->dbHandler->selectPartData('nav','id_nav','111');
+		$zdqb=$this->dbHandler->selectPartData('nav','id_nav','112');
+		$link=$this->dbHandler->selectPartData('link','navid_link',$zdqb[0]->id_nav);
+		$zdqb[0]->link=$link[0]->url_link;
+		$navs=$this->dbHandler->SDUNR('nav',array("app_id_nav"=>$_GET['appid']),array("col"=>'order_nav',"by"=>'asc'));
+		foreach($navs as $n){
+			if($n->type_nav==6){
+				$link=$this->dbHandler->selectPartData('link','navid_link',$n->id_nav);
+				$n->link=$link[0]->url_link;
+			}
+		}
+		$sliders=$this->dbHandler->SDUNR('homeslider',array("appid_homeslider"=>$_GET['appid']),array("col"=>'ordernum_homeslider',"by"=>'asc'));
+		$this->load->view('mobile/home',
+			array(
+				'showSlider' => true,
+				'title' => ($app[0]->name_app)."-手機網站",
+				'app'=>$app[0],
+				'navs'=>$navs,
+				'ymxz'=>$ymxz[0],
+				'zdqb'=>$zdqb[0],
+				'sliders'=>$sliders
+			)
+		);
+	}
+	public function nav(){
+		if(!isset($_GET['appid']) || !is_numeric($_GET['appid'])){
+			//1->Appid Error!
+			echo json_encode(array("result"=>1,"data"=>$msg));
+			return false;
+		}
+		$ymxz=$this->dbHandler->selectPartData('nav','id_nav','111');
+		$zdqb=$this->dbHandler->selectPartData('nav','id_nav','112');
+		$navs=$this->dbHandler->SDUNR('nav',array("app_id_nav"=>$_GET['appid']),array("col"=>'order_nav',"by"=>'asc'));
+		$navs[sizeof($navs)]=$ymxz[0];
+		$navs[sizeof($navs)+1]=$zdqb[0];
+		$data=array();
+		foreach($navs as $n){
+			if($n->type_nav==6){
+				$link=$this->dbHandler->selectPartData('link','navid_link',$n->id_nav);
+				$n->url=$link[0]->url_link;
+			}
+			$nav=new stdClass;
+			$nav->name=$n->name_nav;
+			$nav->icon=$n->icon_nav;
+			$nav->type=$n->type_nav;
+			$data[]=$nav;
+		}
+//		print_r($data);
+		$echoData=new stdClass;
+		$echoData->result=0;
+		$echoData->data=$data;
+		echo json_encode($echoData);
+//		echo json_encode(array("result"=>0,"data"=>$data));
+	}
+	public function get_info(){
+		$msg="";
+		switch($_POST['info_type']){
+			case "nav"://1://固定页面2://固定二级页面3://文章列表4://表单页5://商城6://链接
+				$navid=$_POST['navid'];
+				$nav=$this->dbHandler->selectPartData('nav','id_nav',$navid);
+				$nav=$nav[0];
+				switch($nav->type_nav){
+					case 1:
+						$data=$this->dbHandler->selectPartData('content','navid_content',$navid);
+						$nav->content=$data[0]->text_content;
+					break;
+					case 2:
+						$subnavs=$this->dbHandler->SDUNR('subnav',array("navid_subnav"=>$navid),array("col"=>'id_subnav',"by"=>'asc'));
+						$nav->subnavs=$subnavs;
+					break;
+					case 3:
+						$essays=$this->dbHandler->SDUNR('essay',array("navid_essay"=>$navid),array("col"=>'lasttime_essay',"by"=>'desc'));
+						$nav->essays=$essays;
+					break;
+					case 4:
+						$forms=$this->dbHandler->SDUNR('form',array("navid_form"=>$navid),array("col"=>'id_form',"by"=>'asc'));
+						$nav->forms=$forms;
+					break;
+					case 6:
+						$links=$this->dbHandler->SDUNR('link',array("navid_link"=>$navid),array("col"=>'id_link',"by"=>'asc'));
+//						$nav->link=file_get_contents($links[0]->url_link);
+						$nav->link=$links[0]->url_link;
+					break;
+					case 5:
+						if($nav->hasmallcat_nav==1){//有分类
+							$categorys=$this->dbHandler->SDUNR('mall_category',array("navid_mall_category"=>$navid),array("col"=>'order_mall_category',"by"=>'asc'));
+		/*					foreach($category as $key=>$c){
+								$products=$this->dbHandler->SDUNR('product',array("catid_product"=>$c->id_mall_category),array("col"=>'id_product',"by"=>'asc'));
+								$c->products=$products;
+							}*/
+							$nav->categorys=$categorys;
+						}else{
+							$products=$this->dbHandler->SDUNR('product',array("navid_product"=>$navid),array("col"=>'lasttime_product',"by"=>'desc'));
+							$nav->products=$products;
+						}
+					break;
+				}
+				$msg=$nav;
+			break;
+			case "subnav":
+				$subnavid=$_POST['subnavid'];
+				$subnav=$this->dbHandler->selectPartData('subnav','id_subnav',$subnavid);
+				$subnav=$subnav[0];
+				$msg=$subnav;
+			break;
+			case "essay":
+				$essayid=$_POST['essayid'];
+				$essay=$this->dbHandler->selectPartData('essay','id_essay',$essayid);
+				$essay=$essay[0];
+				$msg=$essay;
+			break;
+			case "category_product":
+				$categoryid=$_POST['categoryid'];
+				$products=$this->dbHandler->SDUNR('product',array("catid_product"=>$categoryid),array("col"=>'lasttime_product',"by"=>'desc'));
+				$msg=$products;
+			break;
+			case "product":
+				$productid=$_POST['productid'];
+				$product=$this->dbHandler->selectPartData('product','id_product',$productid);
+				$msg=$product[0];
+			break;
+		}
+		echo json_encode(array("result"=>"success","message"=>$msg));
+	}
+	public function add_formdata(){
+		$userid=isset($_SESSION["appuserid"])?$_SESSION["appuserid"]:0;
+		$time=date("Y-m-d H:i:s");
+		$message='提交時間：'.$time.'<br>';
+//		$message.='用戶ID：'.$userid.'<br>';
+		foreach($_POST['data'] as $value){
+			$form=$this->dbHandler->selectPartData('form','id_form',$value["formid"]);
+			$itemName=$form[0]->name_form;
+			$message.=$itemName.':'.$value["data"].'<br>';
+			$info=array(
+				"formid_formdata"=>$value["formid"],
+				"data_formdata"=>$value["data"],
+				"userid_formdata"=>$userid,
+				"time_formdata"=>$time
+			);
+			$result=$this->dbHandler->insertdata("formdata",$info);
+		}
+		$app=$this->dbHandler->selectPartData('app','id_app',$_GET['appid']);
+		$merchant=$this->dbHandler->selectPartData('merchant','id_merchant',$_SESSION['userid']);
+		$this->email($merchant[0]->email_merchant,'由用戶提交信息',$message);
+		echo json_encode(array("result"=>"success","message"=>"信息寫入成功"));
+	}
+	public function check_push_msg(){
+		$wherein[0]=array("orfield"=>"appid_message","ordata"=>array($_GET["appid"],0));
+		$wherein[1]=array("orfield"=>"type_message","ordata"=>array("0","2"));
+		$wherein[2]=array("orfield"=>"device_message","ordata"=>array("0",$_GET["device"]=="android"?1:2));
+		$order=array("col"=>"time_message","by"=>"asc");
+//		$msg=$this->dbHandler->SDSDUNROR("message",$condition,$orfield,$ordata,$order);
+		$msg=$this->dbHandler->msgSelect("message",$wherein,$order);
+		foreach($msg as $m){
+			if(strtotime(date("Y-m-d H:i:s"))-strtotime($m->time_message)<120){
+				echo json_encode(array("title"=>$m->title_message,"message"=>$m->msg_message));
+			}else echo "";
+		}
+//		echo json_encode(array("title"=>"放假了","message"=>"赶紧回家"));
+	}	
+	public function email($to,$subject,$message){
+		$this->load->library('email');
+		//以下设置Email参数
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'smtp.163.com';
+		$config['smtp_user'] = 'sunxguo@163.com';
+		$config['smtp_pass'] = '19910910Mk1024';
+		$config['smtp_port'] = '25';
+		$config['charset'] = 'utf-8';
+		$config['wordwrap'] = TRUE;
+		$config['mailtype'] = 'html';
+		$this->email->initialize($config);
+		//以下设置Email内容
+		$this->email->from('sunxguo@163.com', 'KM AppPlatform');
+		$this->email->to($to); 
+	//			$this->email->cc('another@another-example.com'); 
+	//			$this->email->bcc('them@their-example.com'); 
+
+		$this->email->subject($subject);
+		$this->email->message($message); 
+
+		$this->email->send();
+
+	//			echo $this->email->print_debugger();
+	}
+}
+
+/* End of file home.php */
+/* Location: ./application/controllers/mobile/home.php */
