@@ -103,7 +103,7 @@ class Api extends CI_Controller {
 		if(!isset($_GET['essayid']) || !is_numeric($_GET['essayid'])){
 			//1->Appid Error!
 			$echoData->result=1;
-			$echoData->data='nav id 错误！';
+			$echoData->data='essay id 错误！';
 			echo json_encode($echoData);
 			return false;
 		}
@@ -116,6 +116,65 @@ class Api extends CI_Controller {
 		$data->summary=$essay->summary_essay;
 		$data->text=$essay->text_essay;
 		$data->thumbnail=$essay->thumbnail_essay;
+		$echoData->result=0;
+		$echoData->data=$data;
+		echo json_encode($echoData);
+	}
+	public function content(){
+		$echoData=new stdClass;
+		if(!isset($_GET['navid']) || !is_numeric($_GET['navid'])){
+			//1->Appid Error!
+			$echoData->result=1;
+			$echoData->data='nav id 错误！';
+			echo json_encode($echoData);
+			return false;
+		}
+		$content=$this->dbHandler->selectPartData('content','navid_content',$_GET['navid']);
+		$content=$content[0];
+		$data=new stdClass;
+		$data->navid=$content->navid_content;
+		$data->text=$content->text_content;
+		$echoData->result=0;
+		$echoData->data=$data;
+		echo json_encode($echoData);
+	}
+	public function formlist(){
+		$echoData=new stdClass;
+		if(!isset($_GET['navid']) || !is_numeric($_GET['navid'])){
+			//1->Appid Error!
+			$echoData->result=1;
+			$echoData->data='nav id 错误！';
+			echo json_encode($echoData);
+			return false;
+		}
+		$forms=$this->dbHandler->SDUNR('form',array("navid_form"=>$_GET['navid']),array());
+		$data=array();
+		foreach($forms as $f){
+			$form=new stdClass;
+			$form->name=$f->name_form;
+			$form->type=$f->type_form;
+			$data[]=$form;
+		}
+		$echoData->result=0;
+		$echoData->data=$data;
+		echo json_encode($echoData);
+	}
+	public function sliderlist(){
+		$echoData=new stdClass;
+		if(!isset($_GET['appid']) || !is_numeric($_GET['appid'])){
+			//1->Appid Error!
+			$echoData->result=1;
+			$echoData->data='app id 错误！';
+			echo json_encode($echoData);
+			return false;
+		}
+		$sliders=$this->dbHandler->SDUNR('homeslider',array("appid_homeslider"=>$_GET['appid']),array("col"=>'ordernum_homeslider',"by"=>'ASC'));
+		$data=array();
+		foreach($sliders as $s){
+			$slider=new stdClass;
+			$slider->src='http://clinic.coolkeji.com'.$s->src_homeslider;
+			$data[]=$slider;
+		}
 		$echoData->result=0;
 		$echoData->data=$data;
 		echo json_encode($echoData);
