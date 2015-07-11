@@ -63,7 +63,7 @@ class Api extends CI_Controller {
 			$nav->type=$n->type_nav;
 			if($n->type_nav==6){
 				$link=$this->dbHandler->selectPartData('link','navid_link',$n->id_nav);
-				$nav->url=$link[0]->url_link;
+				$nav->link=$link[0]->url_link;
 			}
 			$data[]=$nav;
 		}
