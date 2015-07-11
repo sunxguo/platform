@@ -151,6 +151,7 @@ class Api extends CI_Controller {
 		$data=array();
 		foreach($forms as $f){
 			$form=new stdClass;
+			$form->id=$f->id_form;
 			$form->name=$f->name_form;
 			$form->type=$f->type_form;
 			$data[]=$form;
