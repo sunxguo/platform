@@ -159,6 +159,32 @@ class Api extends CI_Controller {
 		$echoData->data=$data;
 		echo json_encode($echoData);
 	}
+	public function formdata(){
+		$echoData=new stdClass;
+		$time=date("Y-m-d H:i:s");
+		$message='提交時間：'.$time.'<br>';
+		$data=json_decode($_POST['data']);
+		$device=$data->device;
+		foreach($data->formdata as $value){
+			$form=$this->dbHandler->selectPartData('form','id_form',$value->formid);
+			$itemName=$form[0]->name_form;
+			$navId=$form[0]->navid_form;
+			$message.=$itemName.':'.$value->value.'<br>';
+			$info=array(
+				"formid_formdata"=>$value->formid,
+				"data_formdata"=>$value->value,
+				"userid_formdata"=>0,
+				"time_formdata"=>$time
+			);
+			$result=$this->dbHandler->insertdata("formdata",$info);
+		}
+		$nav=$this->dbHandler->selectPartData('nav','id_nav',$navId);
+		$app=$this->dbHandler->selectPartData('app','id_app',$nav[0]->app_id_nav);
+		$merchant=$this->dbHandler->selectPartData('merchant','id_merchant',$app[0]->merchant_id_app);
+		$this->email($merchant[0]->email_merchant,'有用戶提交信息',$message);
+		$echoData->result=0;
+		echo json_encode($echoData);
+	}
 	public function sliderlist(){
 		$echoData=new stdClass;
 		if(!isset($_GET['appid']) || !is_numeric($_GET['appid'])){
