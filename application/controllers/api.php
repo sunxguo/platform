@@ -209,7 +209,7 @@ class Api extends CI_Controller {
 	public function update35(){
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
-				'<version>2.0</version>'.
+				'<version>1.0</version>'.
 				'<url>http://clinic.coolkeji.com/uploads/med.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
@@ -218,7 +218,7 @@ class Api extends CI_Controller {
 	public function update36(){
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
-				'<version>2.0</version>'.
+				'<version>1.0</version>'.
 				'<url>http://clinic.coolkeji.com/uploads/Cosmetology.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
@@ -226,7 +226,7 @@ class Api extends CI_Controller {
 	public function update37(){
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
-				'<version>2.0</version>'.
+				'<version>1.0</version>'.
 				'<url>http://clinic.coolkeji.com/uploads/Cosmetology.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
@@ -234,7 +234,7 @@ class Api extends CI_Controller {
 	public function update38(){
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
-				'<version>2.0</version>'.
+				'<version>1.0</version>'.
 				'<url>http://clinic.coolkeji.com/uploads/Cosmetology.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
@@ -242,7 +242,7 @@ class Api extends CI_Controller {
 	public function update40(){
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
-				'<version>2.0</version>'.
+				'<version>1.0</version>'.
 				'<url>http://clinic.coolkeji.com/uploads/Cosmetology.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
