@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'www.coolkeji.com';
+$db['default']['hostname'] = 'www.fengdukeji.com';
 $db['default']['username'] = 'root';
 //$db['default']['password'] = '123456';
 $db['default']['password'] = '19910910jacksun';
-$db['default']['database'] = 'doctor';
+$db['default']['database'] = 'platform';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

@@ -10,6 +10,7 @@
     <script src="/assets/js/mobile.js" type="text/javascript"></script>
     <script src="/assets/js/pingpp_pay.js" type="text/javascript"></script>
 	<script src="/assets/js/unslider.min.js" type="text/javascript"></script>
+	<script charset="utf-8" src="/assets/js/jquery.form.js"></script>
 	<script src="/assets/js/jquery.event.swipe.js" type="text/javascript"></script>
 </head>
 <body scroll="no">

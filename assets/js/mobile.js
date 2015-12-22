@@ -184,6 +184,13 @@ function getinfo(navid,name){
 					//alert(result.message.link);
 					//$("#main_body").addClass("con-pd");
 				break;
+				case "7":
+					$("#main_body").html('<form id="uploadImgThumb" method="post" action="/cms/index/upload_img" enctype="multipart/form-data">'+
+						'<input onchange="return upload_image(\'#uploadImgThumb\')" name="image" type="file" id="file" style="display:none;" accept="image/*">'+
+					'</form>'+
+						'<script>document.getElementById("file").click();</script>'
+					);
+				break;
 			}
 		}else{
 			alert("获取信息失败，请重试！");
@@ -199,6 +206,30 @@ function getinfo(navid,name){
 	}
 	$("#goBackHome_bt").show();
 	
+}
+function upload_image(form_id){
+	$(form_id).ajaxSubmit({
+		success: function (data) {
+			var result=$.parseJSON(data);
+			if(result.code){
+				$("#addImgList div img").attr("src","/assets/images/cms/appbg_ad.png");
+				var new_img_item='<li onmouseover="imgover(this)" onmouseout="imgout(this)" class="img-item imagelist"><img class="thumb-src" width="77" height="77" src="'+result.message+'"><img onclick="delclick(this)" class="del-bt" title="删除该缩略图" src="/assets/images/cms/delete.png"></li>';
+				$("#addImgList").before(new_img_item);
+				if($("#imgListDivs").children(".imagelist").length>=3){
+					$("#addImgList").hide();
+				}
+			}else{
+				alert(result.message);
+			}
+		},
+		url: "/cms/index/upload_img",
+		data: $(form_id).formSerialize(),
+		type: 'POST',
+		beforeSubmit: function () {
+			$("#addImgList div img").attr("src","/assets/images/cms/loading.gif");
+		}
+	});
+	return false;
 }
 function sub_nav_click(subnavid){
 	$("#show_sider_bt").hide();

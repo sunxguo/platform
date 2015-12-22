@@ -72,6 +72,9 @@ class Home extends CI_Controller {
 			)
 		);
 	}
+	public function uploadImage(){
+		
+	}
 	public function get_info(){
 		$msg="";
 		switch($_POST['info_type']){
