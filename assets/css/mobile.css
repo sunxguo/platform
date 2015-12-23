@@ -1077,6 +1077,11 @@ display: block;
 	text-decoration:none;
 	color:#FFF;
 }
+.main .bar li a span,
+.main .backbar li a span{
+	margin-top: -3px;
+    display: block;
+}
 #back_bar{
 	display:none;
 }

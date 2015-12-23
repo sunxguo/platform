@@ -93,7 +93,7 @@
 				<p>首页</p>
 			</a>
 		</div>
-		<div class="main-body" id="main_body">
+		<div class="main-body" id="main_body" style="overflow:scroll;">
 			<div class="slider" id="slider">
 				<ul>
 					<?php foreach($sliders as $img):?>
@@ -182,24 +182,21 @@
 	<ul class="morelist" id="morelist" style="position:fixed;right: 0px;top: 0px;">
 		<?php for($i=0;$i<$bt_num;$i++):?>
 		<li>
-			<?php if($navs[$i]->type_nav==6):?>
-			<a href="<?php echo $navs[$i]->link;?>" target="_blank">
-			<?php else:?>
+			
 			<a href="javascript:getinfo('<?php echo $navs[$i]->id_nav;?>','<?php echo $navs[$i]->name_nav;?>');">
-			<?php endif;?>
 				<img src="<?php echo $navs[$i]->icon_nav;?>">
 				<span><?php echo $navs[$i]->name_nav;?></span>
 			</a>
 		</li>
 		<?php endfor;?>
-		<li>
+		<!-- <li>
 			<a href="javascript:getinfo('<?php echo $ymxz->id_nav;?>','<?php echo $ymxz->name_nav;?>');">
 				<img src="<?php echo $ymxz->icon_nav;?>">
 				<span><?php echo $ymxz->name_nav;?></span>
 			</a>
-		</li>
+		</li> -->
 		<li>
-			<a href="<?php echo $zdqb->link;?>" target="_blank">
+			<a href="javascript:getinfo('<?php echo $zdqb->id_nav;?>','<?php echo $zdqb->name_nav;?>');" target="_blank">
 				<img src="<?php echo $zdqb->icon_nav;?>">
 				<span><?php echo $zdqb->name_nav;?></span>
 			</a>
