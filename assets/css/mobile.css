@@ -1087,7 +1087,8 @@ display: block;
 	bottom:58px;
 	right:0px;*/
 	float:right;
-	background-color: rgb(84, 112, 111);
+	/*background-color: rgb(84, 112, 111);*/
+	background: url(/assets/images/mobile/custom_bg.png);
 	display:none;
 }
 .morelist li{
