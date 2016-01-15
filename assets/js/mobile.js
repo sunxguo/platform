@@ -181,7 +181,7 @@ function getinfo(navid,name){
 						'<script>document.getElementById("link").click();</script>'
 					);
 					// $("#main_body").html('<div style="width:100%;height:100%;-webkit-overflow-scrolling:touch; overflow: scroll;"><iframe src="'+result.message.link+'" frameborder="0" scrolling="yes" style="height: 100%;" /></iframe></div>');
-				//	$("#link").click();
+					$("#link").click();
 					//alert(result.message.link);
 					//$("#main_body").addClass("con-pd");
 				break;
