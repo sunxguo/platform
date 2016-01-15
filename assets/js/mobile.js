@@ -180,7 +180,7 @@ function getinfo(navid,name){
 					// $("#main_body").html('<a id="link" href="'+result.message.link+'" target="_blank" style="line-height:30px;">'+name+'</a>'+
 					// 	'<script>document.getElementById("link").click();</script>'
 					// );
-					$("#main_body").html('<iframe src="'+result.message.link+'" frameborder="0" scrolling="yes" style="height: 100%;" /></iframe>');
+					$("#main_body").html('<div style="-webkit-overflow-scrolling:touch; overflow: scroll;"><iframe src="'+result.message.link+'" frameborder="0" scrolling="yes" style="height: 100%;" /></iframe></div>');
 				//	$("#link").click();
 					//alert(result.message.link);
 					//$("#main_body").addClass("con-pd");

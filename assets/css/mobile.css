@@ -1036,7 +1036,7 @@ display: block;
 	width:100%;
 	position: fixed;
 	bottom: 0px;
-	background: #75A341;
+	background: #e99315;
 	height:58px;
 }
 .main .bar li,
@@ -1101,7 +1101,7 @@ display: block;
 	width:85px;
 	height:70px;
 	margin:0px 0px 3px 3px;
-	background-color:rgb(213,175,76);
+	background-color:#e99315;
 /*	border-bottom:1px solid #FFF;*/
 	-moz-border-radius: 2px;      /* Gecko browsers */
     -webkit-border-radius: 2px;   /* Webkit browsers */
