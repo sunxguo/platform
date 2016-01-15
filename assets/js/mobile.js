@@ -176,12 +176,12 @@ function getinfo(navid,name){
 					}
 				break;
 				case "6":
-					//window.open(result.message.link);
+					window.open(result.message.link);
 					$("#main_body").html('<a id="link" href="'+result.message.link+'" target="_blank" style="line-height:30px;">'+name+'</a>'+
 						'<script>document.getElementById("link").click();</script>'
 					);
 					// $("#main_body").html('<div style="width:100%;height:100%;-webkit-overflow-scrolling:touch; overflow: scroll;"><iframe src="'+result.message.link+'" frameborder="0" scrolling="yes" style="height: 100%;" /></iframe></div>');
-					$("#link").click();
+				//	$("#link").click();
 					//alert(result.message.link);
 					//$("#main_body").addClass("con-pd");
 				break;
