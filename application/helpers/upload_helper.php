@@ -112,7 +112,7 @@ function upload($upload_file_name="files"){
 		}
 		@chmod($file_path, 0644);
 		$file_url = $save_url . $new_file_name;
-		resizeImage($file_path,5000,5000,$file_path,$file_ext);
+		// resizeImage($file_path,5000,5000,$file_path,$file_ext);
 		return array("code"=>true,"message"=>$file_url);
 	}
 }
