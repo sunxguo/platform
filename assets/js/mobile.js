@@ -137,7 +137,16 @@ function getinfo(navid,name){
 					for(var i=0;i<forms.length;i++){
 						var formLi="";
 						if(forms[i].type_form=="short") formLi='<li><span class="label">'+forms[i].name_form+'：</span><br><input class="inp-txt" type="text" id="input'+i+'"><input type="hidden" id="formid'+i+'" value="'+forms[i].id_form+'"></li>';
-						else formLi='<li><span class="label">'+forms[i].name_form+'：</span><br><textarea id="input'+i+'"></textarea><input type="hidden" id="formid'+i+'" value="'+forms[i].id_form+'"></li>';
+						else if(forms[i].type_form=="long") formLi='<li><span class="label">'+forms[i].name_form+'：</span><br><textarea id="input'+i+'"></textarea><input type="hidden" id="formid'+i+'" value="'+forms[i].id_form+'"></li>';
+						else if(forms[i].type_form=="image"){
+							formLi='<li><span class="label">'+forms[i].name_form+'：</span><br><input type="hidden" id="formid'+i+'" value="'+forms[i].id_form+'">';
+							formLi+='<div onclick="$(\'#file\').click();" style="cursor:pointer;">';
+							formLi+='	<img width="77" height="77" src="/assets/images/cms/appbg_ad.png">';
+							formLi+='</div>';
+							formLi+='<form id="uploadImgThumb" method="post" action="/cms/index/upload_img" enctype="multipart/form-data">';
+							formLi+='	<input onchange="return upload_thumb_img(\'#uploadImgThumb\')" name="image" type="file" id="file" style="display:none;" accept="image/*">';
+							formLi+='</form></li>';
+						}
 						$("#main_body .formlist").append(formLi);
 					}
 					$("#main_body .formlist").append('<li><a style="cursor: pointer;" onclick="submitInfo()" class="btnfa120">提交</a></li>');
@@ -176,22 +185,22 @@ function getinfo(navid,name){
 					}
 				break;
 				case "6":
-					window.open(result.message.link);
-					$("#main_body").html('<a id="link" href="'+result.message.link+'" target="_blank" style="line-height:30px;">'+name+'</a>'+
-						'<script>document.getElementById("link").click();</script>'
-					);
-					// $("#main_body").html('<div style="width:100%;height:100%;-webkit-overflow-scrolling:touch; overflow: scroll;"><iframe src="'+result.message.link+'" frameborder="0" scrolling="yes" style="height: 100%;" /></iframe></div>');
-				//	$("#link").click();
+					// window.open(result.message.link);
+					// $("#main_body").html('<a id="link" href="'+result.message.link+'" target="_blank" style="line-height:30px;display:none;">'+name+'</a>'+
+					// 	'<script>document.getElementById("link").click();</script>'
+					// );
+					$("#main_body").html('<div style="width:100%;height:100%;-webkit-overflow-scrolling:touch; overflow: scroll;"><iframe src="'+result.message.link+'" frameborder="0" scrolling="yes" style="height: 100%;width:100%;" /></iframe></div>');
+					//	$("#link").click();
 					//alert(result.message.link);
 					//$("#main_body").addClass("con-pd");
 				break;
-				case "7":
-					$("#main_body").html('<form id="uploadImgThumb" method="post" action="/cms/index/upload_img" enctype="multipart/form-data">'+
-						'<input onchange="return upload_image(\'#uploadImgThumb\')" name="image" type="file" id="file" style="display:none;" accept="image/*">'+
-					'</form>'+
-						'<script>document.getElementById("file").click();</script>'
-					);
-				break;
+				// case "7":
+				// 	$("#main_body").html('<form id="uploadImgThumb" method="post" action="/cms/index/upload_img" enctype="multipart/form-data">'+
+				// 		'<input onchange="return upload_image(\'#uploadImgThumb\')" name="image" type="file" id="file" style="display:none;" accept="image/*">'+
+				// 	'</form>'+
+				// 		'<script>document.getElementById("file").click();</script>'
+				// 	);
+				// break;
 			}
 		}else{
 			alert("获取信息失败，请重试！");
@@ -205,8 +214,26 @@ function getinfo(navid,name){
 			showmore();
 		}
 	}
-	$("#goBackHome_bt").show();
-	
+	$("#goBackHome_bt").show();	
+}
+function upload_thumb_img(form_id){
+	$(form_id).ajaxSubmit({
+		success: function (data) {
+			var result=$.parseJSON(data);
+			if(result.code){
+				$("#addImgList div img").attr("src",result.message);
+			}else{
+				alert(result.message);
+			}
+		},
+		url: "/cms/index/upload_img",
+		data: $(form_id).formSerialize(),
+		type: 'POST',
+		beforeSubmit: function () {
+			$("#addImgList div img").attr("src","/assets/images/cms/loading.gif");
+		}
+	});
+	return false;
 }
 function upload_image(form_id){
 	$(form_id).ajaxSubmit({

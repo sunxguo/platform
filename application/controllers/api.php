@@ -49,11 +49,11 @@ class Api extends CI_Controller {
 			echo json_encode($echoData);
 			return false;
 		}
-		$ymxz=$this->dbHandler->selectPartData('nav','id_nav','111');
+		// $ymxz=$this->dbHandler->selectPartData('nav','id_nav','111');
 		$zdqb=$this->dbHandler->selectPartData('nav','id_nav','112');
 		$navs=$this->dbHandler->SDUNR('nav',array("app_id_nav"=>$_GET['appid']),array("col"=>'order_nav',"by"=>'asc'));
-		$navs[sizeof($navs)]=$ymxz[0];
-		$navs[sizeof($navs)+1]=$zdqb[0];
+		// $navs[sizeof($navs)+1]=$ymxz[0];
+		$navs[sizeof($navs)]=$zdqb[0];
 		$data=array();
 		foreach($navs as $n){
 			$nav=new stdClass;
