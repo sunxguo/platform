@@ -1164,3 +1164,23 @@ display: block;
 	top: 0;
 	z-index: 10000;
 }
+.url-view-bottom{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	background: rgba(55,55,55,0.8);
+}
+.url-view-bottom button{
+	background: none;
+	border: none;
+	color: #047ef9;
+	line-height: 2em;
+}
+.url-view-bottom-left{
+	float: left;
+	padding-left: 10px;
+}
+.url-view-bottom-right{
+	float: right;
+	padding-right: 10px;
+}

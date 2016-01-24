@@ -189,7 +189,7 @@ function getinfo(navid,name){
 					// $("#main_body").html('<a id="link" href="'+result.message.link+'" target="_blank" style="line-height:30px;display:none;">'+name+'</a>'+
 					// 	'<script>document.getElementById("link").click();</script>'
 					// );
-					$("#main_body").html('<div style="width:100%;height:100%;-webkit-overflow-scrolling:touch; overflow: scroll;"><iframe src="'+result.message.link+'" frameborder="0" scrolling="yes" style="height: 100%;width:100%;" /></iframe></div>');
+					$("#main").html('<div style="width:100%;height:100%;-webkit-overflow-scrolling:touch; overflow: scroll;position:relative;"><div class="url-view-bottom"><button class="url-view-bottom-left" onclick="javascript:bargoback();">Done</button><div class="url-view-bottom-right"><button onclick="javascript:history.go(-1);"><</button><button onclick="javascript:history.go(1);">></button></div></div><iframe src="'+result.message.link+'" frameborder="0" scrolling="yes" style="height: 100%;width:100%;" /></iframe></div>');
 					//	$("#link").click();
 					//alert(result.message.link);
 					//$("#main_body").addClass("con-pd");
