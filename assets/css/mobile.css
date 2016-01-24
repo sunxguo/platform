@@ -1165,7 +1165,7 @@ display: block;
 	z-index: 10000;
 }
 .url-view-bottom{
-	position: absolute;
+	position: fixed;
 	bottom: 0px;
 	width: 100%;
 	background: rgba(55,55,55,0.8);

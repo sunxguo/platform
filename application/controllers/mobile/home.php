@@ -214,6 +214,10 @@ class Home extends CI_Controller {
 		$this->email($merchant[0]->email_merchant,'由用戶提交信息',$message);
 		echo json_encode(array("result"=>"success","message"=>"信息寫入成功"));
 	}
+	public function add_imageformdata(){
+		
+		echo json_encode(array("result"=>"success","message"=>"信息寫入成功"));
+	}
 	public function check_push_msg(){
 		$wherein[0]=array("orfield"=>"appid_message","ordata"=>array($_GET["appid"],0));
 		$wherein[1]=array("orfield"=>"type_message","ordata"=>array("0","2"));

@@ -141,7 +141,7 @@ function getinfo(navid,name){
 						else if(forms[i].type_form=="image"){
 							formLi='<li><span class="label">'+forms[i].name_form+'：</span><br><input type="hidden" id="formid'+i+'" value="'+forms[i].id_form+'">';
 							formLi+='<div onclick="$(\'#file\').click();" style="cursor:pointer;">';
-							formLi+='	<img width="77" height="77" src="/assets/images/cms/appbg_ad.png">';
+							formLi+='	<img id="upload_img" width="77" height="77" src="/assets/images/cms/appbg_ad.png">';
 							formLi+='</div>';
 							formLi+='<form id="uploadImgThumb" method="post" action="/cms/index/upload_img" enctype="multipart/form-data">';
 							formLi+='	<input onchange="return upload_thumb_img(\'#uploadImgThumb\')" name="image" type="file" id="file" style="display:none;" accept="image/*">';
@@ -149,7 +149,7 @@ function getinfo(navid,name){
 						}
 						$("#main_body .formlist").append(formLi);
 					}
-					$("#main_body .formlist").append('<li><a style="cursor: pointer;" onclick="submitInfo()" class="btnfa120">提交</a></li>');
+					$("#main_body .formlist").append('<li><a style="cursor: pointer;" onclick="submitImageInfo()" class="btnfa120">提交</a></li>');
 				break;
 				case "5":
 					if(result.message.hasmallcat_nav=="1"){
@@ -189,7 +189,7 @@ function getinfo(navid,name){
 					// $("#main_body").html('<a id="link" href="'+result.message.link+'" target="_blank" style="line-height:30px;display:none;">'+name+'</a>'+
 					// 	'<script>document.getElementById("link").click();</script>'
 					// );
-					$("#main").html('<div style="width:100%;height:100%;-webkit-overflow-scrolling:touch; overflow: scroll;position:relative;"><div class="url-view-bottom"><button class="url-view-bottom-left" onclick="javascript:bargoback();">Done</button><div class="url-view-bottom-right"><button onclick="javascript:history.go(-1);"><</button><button onclick="javascript:history.go(1);">></button></div></div><iframe src="'+result.message.link+'" frameborder="0" scrolling="yes" style="height: 100%;width:100%;" /></iframe></div>');
+					$("#main").html('<div style="width:100%;height:100%;-webkit-overflow-scrolling:touch; overflow: scroll;position:relative;"><div class="url-view-bottom"><button class="url-view-bottom-left" onclick="javascript:bargoback();">Done</button><div class="url-view-bottom-right"><button onclick="javascript:history.go(-1);"><</button><button onclick="javascript:history.go(1);">></button></div></div><iframe src="'+result.message.link+'" frameborder="0" scrolling="yes" style="height: 100%;width:100%;zoom:50%;" /></iframe></div>');
 					//	$("#link").click();
 					//alert(result.message.link);
 					//$("#main_body").addClass("con-pd");
@@ -221,7 +221,7 @@ function upload_thumb_img(form_id){
 		success: function (data) {
 			var result=$.parseJSON(data);
 			if(result.code){
-				$("#addImgList div img").attr("src",result.message);
+				$("#upload_img").attr("src",result.message);
 			}else{
 				alert(result.message);
 			}
@@ -230,7 +230,7 @@ function upload_thumb_img(form_id){
 		data: $(form_id).formSerialize(),
 		type: 'POST',
 		beforeSubmit: function () {
-			$("#addImgList div img").attr("src","/assets/images/cms/loading.gif");
+			$("#aupload_img").attr("src","/assets/images/cms/loading.gif");
 		}
 	});
 	return false;
@@ -385,6 +385,26 @@ function submitInfo(){
 		}
 	});
 }
+function submitImageInfo(){
+	if($("upload_img").attr()=="/assets/images/cms/appbg_ad.png"){
+		alert("請上傳照片！");
+	}
+	alert("提交成功！");
+	bargoback();
+	// $.post(
+	// "/mobile/home/add_formdata",
+	// {
+	// 	'data':get_imageformdata()
+	// },
+	// function(data){
+	// 	var result=$.parseJSON(data);
+	// 	if(result.result=="success"){
+	// 		alert("提交成功！");
+	// 	}else{
+	// 		alert("提交失败，请重试！");
+	// 	}
+	// });
+}
 function product_click(productid,cat){
 	$("#show_sider_bt").hide();
 	$("#goBackCat_bt").hide();
@@ -440,6 +460,11 @@ function get_formdata(){
 	for(var i=0;i<inputAmount;i++){
 		objJson.push(jQuery.parseJSON('{"formid":"' + $("#formid"+i).val() + '","data":"' + $("#input"+i).val() + '"}')); 
 	}
+	return objJson;
+}
+function get_imageformdata(){
+	var objJson = [];
+	// objJson.push(jQuery.parseJSON('{"formid":"' + $("#formid"+i).val() + '","data":"' + $("#input"+i).val() + '"}'));
 	return objJson;
 }
 function show_cart(){
