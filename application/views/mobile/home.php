@@ -130,7 +130,7 @@
 				</li>
 			<?php endif;?>
 		</ul>
-		<ul class="backbar" id="back_bar">
+		<ul class="backbar" id="back_bar" <?php if(isset($app->bottom_color_app)) echo "style='background:".($app->bottom_color_app).";'";?>>
 			<li id="goBackHome_bt" style="display:none;">
 				<a href="javascript:bargoback();">
 					<img src="/assets/images/mobile/btn_footer_back.png">
@@ -181,8 +181,7 @@
 	<?php if($app->template_app==2 && $bt_num>4):?>
 	<ul class="morelist" id="morelist" style="position:fixed;right: 0px;top: 0px;">
 		<?php for($i=0;$i<$bt_num;$i++):?>
-		<li>
-			
+		<li  <?php if(isset($app->right_color_app)) echo "style='background-color:".($app->right_color_app).";'";?>>
 			<a href="javascript:getinfo('<?php echo $navs[$i]->id_nav;?>','<?php echo $navs[$i]->name_nav;?>');">
 				<img src="<?php echo $navs[$i]->icon_nav;?>">
 				<span><?php echo $navs[$i]->name_nav;?></span>
@@ -195,7 +194,7 @@
 				<span><?php echo $ymxz->name_nav;?></span>
 			</a>
 		</li> -->
-		<li>
+		<li  <?php if(isset($app->right_color_app)) echo "style='background-color:".($app->right_color_app).";'";?>>
 			<a href="javascript:getinfo('<?php echo $zdqb->id_nav;?>','<?php echo $zdqb->name_nav;?>');" target="_blank">
 				<img src="<?php echo $zdqb->icon_nav;?>">
 				<span><?php echo $zdqb->name_nav;?></span>
