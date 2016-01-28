@@ -103,7 +103,7 @@
 			</div>
 		</div>
 		<?php if($app->template_app==2):?>
-		<ul class="bar" id="bar">
+		<ul class="bar" id="bar" <?php if(isset($app->bottom_color_app)) echo "style='background:".($app->bottom_color_app).";'";?>>
 			<?php $bt_num=sizeof($navs);if($bt_num<=4):?>
 				<?php foreach($navs as $key=>$item):?>
 				<li>
