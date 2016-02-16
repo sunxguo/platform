@@ -59,7 +59,7 @@ class Api extends CI_Controller {
 			$nav=new stdClass;
 			$nav->id=$n->id_nav;
 			$nav->name=$n->name_nav;
-			$nav->icon='http://clinic.coolkeji.com'.$n->icon_nav;
+			$nav->icon='http://platform.fengdukeji.com'.$n->icon_nav;
 			$nav->type=$n->type_nav;
 			if($n->type_nav==6){
 				$link=$this->dbHandler->selectPartData('link','navid_link',$n->id_nav);
@@ -91,7 +91,7 @@ class Api extends CI_Controller {
 			$essay->summary=$e->summary_essay;
 //			$essay->text=$e->text_essay;
 			$thumbnails=json_decode($e->thumbnail_essay);
-			$essay->thumbnail=isset($thumbnails[0])?'http://clinic.coolkeji.com'.$thumbnails[0]->src:'';
+			$essay->thumbnail=isset($thumbnails[0])?'http://platform.fengdukeji.com'.$thumbnails[0]->src:'';
 			$data[]=$essay;
 		}
 		$echoData->result=0;
@@ -199,7 +199,7 @@ class Api extends CI_Controller {
 		$data=array();
 		foreach($sliders as $s){
 			$slider=new stdClass;
-			$slider->src='http://clinic.coolkeji.com'.$s->src_homeslider;
+			$slider->src='http://platform.fengdukeji.com'.$s->src_homeslider;
 			$data[]=$slider;
 		}
 		$echoData->result=0;
@@ -210,7 +210,7 @@ class Api extends CI_Controller {
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
 				'<version>1.1</version>'.
-				'<url>http://clinic.coolkeji.com/uploads/med.apk</url>'.
+				'<url>http://platform.fengdukeji.com/uploads/med.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
 	}
@@ -219,7 +219,7 @@ class Api extends CI_Controller {
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
 				'<version>1.1</version>'.
-				'<url>http://clinic.coolkeji.com/uploads/pskin.apk</url>'.
+				'<url>http://platform.fengdukeji.com/uploads/pskin.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
 	}
@@ -227,7 +227,7 @@ class Api extends CI_Controller {
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
 				'<version>1.1</version>'.
-				'<url>http://clinic.coolkeji.com/uploads/echamp.apk</url>'.
+				'<url>http://platform.fengdukeji.com/uploads/echamp.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
 	}
@@ -235,7 +235,7 @@ class Api extends CI_Controller {
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
 				'<version>1.1</version>'.
-				'<url>http://clinic.coolkeji.com/uploads/wbeauty.apk</url>'.
+				'<url>http://platform.fengdukeji.com/uploads/wbeauty.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
 	}
@@ -243,7 +243,7 @@ class Api extends CI_Controller {
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
 				'<version>1.1</version>'.
-				'<url>http://clinic.coolkeji.com/uploads/vigor.apk</url>'.
+				'<url>http://platform.fengdukeji.com/uploads/vigor.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
 	}
