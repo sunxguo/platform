@@ -210,7 +210,7 @@ class Api extends CI_Controller {
 	public function update35(){
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
-				'<version>1.1</version>'.
+				'<version>1.0</version>'.
 				'<url>http://platform.fengdukeji.com/uploads/med.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
@@ -227,7 +227,7 @@ class Api extends CI_Controller {
 	public function update37(){
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
-				'<version>1.1</version>'.
+				'<version>1.0</version>'.
 				'<url>http://platform.fengdukeji.com/uploads/echamp.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
@@ -235,7 +235,7 @@ class Api extends CI_Controller {
 	public function update38(){
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
-				'<version>1.1</version>'.
+				'<version>1.0</version>'.
 				'<url>http://platform.fengdukeji.com/uploads/wbeauty.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
@@ -243,7 +243,7 @@ class Api extends CI_Controller {
 	public function update40(){
 		echo '<?xml version="1.0" encoding="utf-8"?>'.
 				'<info>'.
-				'<version>1.1</version>'.
+				'<version>1.0</version>'.
 				'<url>http://platform.fengdukeji.com/uploads/vigor.apk</url>'.
 				'<description>检查到最新版本，请及时更新！</description>'.
 				'</info>';
