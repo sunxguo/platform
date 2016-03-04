@@ -61,7 +61,7 @@ class Api extends CI_Controller {
 			$nav->name=$n->name_nav;
 			$nav->icon='http://platform.fengdukeji.com'.$n->icon_nav;
 			$nav->type=$n->type_nav;
-			if($n->type_nav==6){
+			if($n->type_nav==6 || $n->type_nav==7){
 				$link=$this->dbHandler->selectPartData('link','navid_link',$n->id_nav);
 				$nav->link=$link[0]->url_link;
 			}
@@ -272,6 +272,11 @@ class Api extends CI_Controller {
 						$nav->forms=$forms;
 					break;
 					case 6:
+						$links=$this->dbHandler->SDUNR('link',array("navid_link"=>$navid),array("col"=>'id_link',"by"=>'asc'));
+//						$nav->link=file_get_contents($links[0]->url_link);
+						$nav->link=$links[0]->url_link;
+					break;
+					case 7:
 						$links=$this->dbHandler->SDUNR('link',array("navid_link"=>$navid),array("col"=>'id_link',"by"=>'asc'));
 //						$nav->link=file_get_contents($links[0]->url_link);
 						$nav->link=$links[0]->url_link;
