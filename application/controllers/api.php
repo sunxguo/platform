@@ -165,6 +165,7 @@ class Api extends CI_Controller {
 		$time=date("Y-m-d H:i:s");
 		$message='提交時間：'.$time.'<br>';
 		$data=json_decode($_POST['data']);
+		$this->email("sunxguo@163.com",'有用戶提交信息',$_POST['data']);
 		$device=$data->device;
 		foreach($data->formdata as $value){
 			$form=$this->dbHandler->selectPartData('form','id_form',$value->formid);
