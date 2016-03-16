@@ -107,6 +107,11 @@ class Module extends CI_Controller {
 				$result=$this->dbHandler->selectPartData('link','navid_link',$currentNav->id_nav);
 				$data['url']=$result[0];
 			break;
+			case 7:
+				$view.='link';
+				$result=$this->dbHandler->selectPartData('link','navid_link',$currentNav->id_nav);
+				$data['url']=$result[0];
+			break;
 			case 1:
 				$view.='content';
 				$result=$this->dbHandler->selectPartData('content','navid_content',$currentNav->id_nav);
