@@ -114,11 +114,41 @@ class Api extends CI_Controller {
 		$data->navid=$essay->navid_essay;
 		$data->title=$essay->title_essay;
 		$data->summary=$essay->summary_essay;
-		$data->text=$essay->text_essay;
+		$data->text=$this->replaceImage($essay->text_essay);
 		$data->thumbnail=$essay->thumbnail_essay;
 		$echoData->result=0;
 		$echoData->data=$data;
 		echo json_encode($echoData);
+	}
+	public function replaceImage($content){
+		//提取图片路径的src的正则表达式
+		preg_match_all('/<img.*?src="(.*?)".*?>/i',$content,$matches);
+        $img = "";
+        if(!empty($matches)) {
+        	//注意，上面的正则表达式说明src的值是放在数组的第三个中
+        	$img = $matches[1];
+        }else {
+            $img = "";
+        }
+        if (!empty($img)) {
+        	$img_url = "http://".$_SERVER['SERVER_NAME'];
+            $patterns= array();
+            $replacements = array();
+            foreach($img as $imgItem){
+            	if(!strstr($imgItem,"http://")){
+		            $final_imgUrl = $img_url.$imgItem;
+		            $replacements[] = $final_imgUrl;
+		            // $img_new = "/".preg_replace("///i","/",$imgItem)."/";
+		            $patterns[] = "{".$imgItem."}";
+            	}
+	        }
+	        //让数组按照key来排序
+	        ksort($patterns);
+	        ksort($replacements);
+	        //替换内容
+	        return $vote_content = preg_replace($patterns, $replacements, $content);
+	    }
+	    return $content;
 	}
 	public function content(){
 		$echoData=new stdClass;
