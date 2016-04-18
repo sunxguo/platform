@@ -163,7 +163,7 @@ class Api extends CI_Controller {
 		$content=$content[0];
 		$data=new stdClass;
 		$data->navid=$content->navid_content;
-		$data->text=$content->text_content;
+		$data->text=$this->replaceImage($content->text_content);
 		$echoData->result=0;
 		$echoData->data=$data;
 		echo json_encode($echoData);
