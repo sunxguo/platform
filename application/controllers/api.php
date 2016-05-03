@@ -247,7 +247,7 @@ class Api extends CI_Controller {
 	}
 	
 	public function update36(){
-		echo '<?xml version="1.0.4" encoding="utf-8"?>'.
+		echo '<?xml version="0" encoding="utf-8"?>'.
 				'<info>'.
 				'<version>1.0</version>'.
 				'<url>http://platform.fengdukeji.com/uploads/pskin.apk</url>'.
