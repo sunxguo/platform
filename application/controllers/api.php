@@ -217,6 +217,10 @@ class Api extends CI_Controller {
 		$echoData->result=0;
 		echo json_encode($echoData);
 	}
+	public function uploadImg(){
+		$result=upload("image");
+		echo json_encode($result);
+	}
 	public function sliderlist(){
 		$echoData=new stdClass;
 		if(!isset($_GET['appid']) || !is_numeric($_GET['appid'])){
