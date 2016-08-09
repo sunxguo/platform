@@ -375,7 +375,8 @@ class Api extends CI_Controller {
 			$result=$this->dbHandler->insertdata("formdata",$info);
 		}
 		$app=$this->dbHandler->selectPartData('app','id_app',$_GET['appid']);
-		$merchant=$this->dbHandler->selectPartData('merchant','id_merchant',$_SESSION['userid']);
+		// $merchant=$this->dbHandler->selectPartData('merchant','id_merchant',$_SESSION['userid']);
+		$merchant=$this->dbHandler->selectPartData('merchant','id_merchant',$app[0]->merchant_id_app);
 		$this->email($merchant[0]->email_merchant,'由用戶提交信息',$message);
 		echo json_encode(array("result"=>"success","message"=>"信息寫入成功"));
 	}
