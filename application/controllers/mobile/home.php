@@ -459,7 +459,7 @@ class Home extends CI_Controller {
 		$config['protocol'] = 'smtp';
 		$config['smtp_host'] = 'smtp.163.com';
 		$config['smtp_user'] = 'sunxguo@163.com';
-		$config['smtp_pass'] = '19910910Mk1024';
+		$config['smtp_pass'] = '19910910jacksun';
 		$config['smtp_port'] = '25';
 		$config['charset'] = 'utf-8';
 		$config['wordwrap'] = TRUE;
